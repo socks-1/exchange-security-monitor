@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Exchange Security Monitor</title>
+    <meta name="description" content="Real-time security monitoring and trust scoring for top cryptocurrency exchanges">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-card: #12121a;
+            --text-primary: #f3f4f6;
+            --text-secondary: #a1a1aa;
+            --accent-primary: #10b981;
+            --accent-warning: #f59e0b;
+            --accent-danger: #ef4444;
+            --accent-info: #3b82f6;
+            --border-color: #2e2e3e;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            border-radius: 12px;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .exchange-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .exchange-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .exchange-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-info);
+        }
+
+        .exchange-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .exchange-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .trust-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .trust-high {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent-primary);
+        }
+
+        .trust-medium {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--accent-warning);
+        }
+
+        .trust-low {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--accent-danger);
+        }
+
+        .exchange-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        .incident-card {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .incident-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .incident-date {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--accent-primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exchange-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ Crypto Exchange Security Monitor</h1>
+            <p class="subtitle">Real-time security tracking and trust scoring for top cryptocurrency exchanges</p>
+        </header>
+
+        <div class="stats-grid" id="stats">
+            <div class="stat-card">
+                <div class="stat-label">Exchanges Monitored</div>
+                <div class="stat-value" id="stat-exchanges">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Security Incidents (7d)</div>
+                <div class="stat-value" id="stat-incidents">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Last Updated</div>
+                <div class="stat-value" id="stat-updated" style="font-size: 1.25rem;">--</div>
+            </div>
+        </div>
+
+        <section>
+            <h2 class="section-title">🔐 Exchange Trust Scores</h2>
+            <div class="exchange-grid" id="exchanges">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading exchange data...</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top: 3rem;">
+            <h2 class="section-title">⚠️ Recent Security Incidents</h2>
+            <div id="incidents">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading incidents...</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Data sources: CoinGecko API, CPW Security Tracker</p>
+            <p style="margin-top: 0.5rem;">Built with ❤️ for the crypto community</p>
+        </footer>
+    </div>
+
+    <script>
+        async function loadData() {
+            try {
+                const response = await fetch('data/security-data.json')
+                const data = await response.json()
+
+                // Update stats
+                document.getElementById('stat-exchanges').textContent = data.summary.exchanges_monitored
+                document.getElementById('stat-incidents').textContent = data.summary.total_incidents
+                const lastUpdated = new Date(data.last_updated).toLocaleString()
+                document.getElementById('stat-updated').textContent = lastUpdated
+
+                // Render exchanges
+                renderExchanges(data.trust_scores)
+
+                // Render incidents
+                renderIncidents(data.incidents)
+            } catch (error) {
+                console.error('Failed to load data:', error)
+                document.getElementById('exchanges').innerHTML =
+                    '<div class="empty-state"><div class="empty-state-icon">❌</div><p>Failed to load exchange data</p></div>'
+                document.getElementById('incidents').innerHTML =
+                    '<div class="empty-state"><div class="empty-state-icon">❌</div><p>Failed to load incident data</p></div>'
+            }
+        }
+
+        function getTrustClass(score) {
+            if (score >= 8) return 'trust-high'
+            if (score >= 5) return 'trust-medium'
+            return 'trust-low'
+        }
+
+        function renderExchanges(exchanges) {
+            const container = document.getElementById('exchanges')
+
+            if (!exchanges || exchanges.length === 0) {
+                container.innerHTML =
+                    '<div class="empty-state"><div class="empty-state-icon">📊</div><p>No exchange data available</p></div>'
+                return
+            }
+
+            const sorted = [...exchanges].sort((a, b) => (b.trust_score || 0) - (a.trust_score || 0))
+
+            container.innerHTML = sorted.map(exchange => `
+                <div class="exchange-card">
+                    <div class="exchange-header">
+                        <div class="exchange-name">${exchange.exchange || exchange.exchange_id}</div>
+                        <div class="trust-badge ${getTrustClass(exchange.trust_score)}">
+                            Trust: ${exchange.trust_score}/10
+                        </div>
+                    </div>
+                    <div class="exchange-details">
+                        <div class="detail-item">
+                            <div class="detail-label">24h Volume</div>
+                            <div class="detail-value">${(exchange.trade_volume_24h_btc || 0).toLocaleString(undefined, {maximumFractionDigits: 0})} BTC</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Trust Rank</div>
+                            <div class="detail-value">#${exchange.trust_score_rank || 'N/A'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Country</div>
+                            <div class="detail-value">${exchange.country || 'Unknown'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Established</div>
+                            <div class="detail-value">${exchange.year_established || 'N/A'}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('')
+        }
+
+        function renderIncidents(incidents) {
+            const container = document.getElementById('incidents')
+
+            if (!incidents || incidents.length === 0) {
+                container.innerHTML =
+                    '<div class="empty-state"><div class="empty-state-icon">✅</div><p>No security incidents reported in the last 7 days</p></div>'
+                return
+            }
+
+            container.innerHTML = incidents.map(incident => `
+                <div class="incident-card">
+                    <div class="incident-title">${incident.title || 'Security Incident'}</div>
+                    <div class="incident-date">${new Date(incident.timestamp).toLocaleString()}</div>
+                    ${incident.description ? `<p style="margin-top: 0.5rem;">${incident.description}</p>` : ''}
+                </div>
+            `).join('')
+        }
+
+        // Load data on page load
+        loadData()
+
+        // Refresh data every 5 minutes
+        setInterval(loadData, 5 * 60 * 1000)
+    </script>
+</body>
+</html>
