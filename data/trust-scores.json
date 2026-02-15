@@ -1,10 +1,10 @@
 [
   {
-    "timestamp": "2026-02-08T21:26:58.224Z",
+    "timestamp": "2026-02-15T13:55:59.848Z",
     "exchange": "Binance",
     "trust_score": 10,
     "trust_score_rank": 1,
-    "trade_volume_24h_btc": 101429.62785190313,
+    "trade_volume_24h_btc": 125011.11950623491,
     "year_established": 2017,
     "country": "Cayman Islands",
     "url": "https://www.binance.com/",
@@ -12,11 +12,11 @@
     "category": "trust_score"
   },
   {
-    "timestamp": "2026-02-08T21:27:00.917Z",
+    "timestamp": "2026-02-15T13:56:02.545Z",
     "exchange": "Kraken",
     "trust_score": 10,
     "trust_score_rank": 7,
-    "trade_volume_24h_btc": 7923.358046635729,
+    "trade_volume_24h_btc": 10378.129600791644,
     "year_established": 2011,
     "country": "United States",
     "url": "https://www.kraken.com/",
@@ -24,7 +24,7 @@
     "category": "trust_score"
   },
   {
-    "timestamp": "2026-02-08T21:27:03.030Z",
+    "timestamp": "2026-02-15T13:56:04.692Z",
     "exchange": "Bybit (Futures)",
     "trust_score": null,
     "trust_score_rank": 460,
@@ -36,11 +36,11 @@
     "category": "trust_score"
   },
   {
-    "timestamp": "2026-02-08T21:27:05.046Z",
+    "timestamp": "2026-02-15T13:56:07.211Z",
     "exchange": "Bitfinex",
     "trust_score": 9,
-    "trust_score_rank": 16,
-    "trade_volume_24h_btc": 3262.614541251473,
+    "trust_score_rank": 15,
+    "trade_volume_24h_btc": 5113.572809774661,
     "year_established": 2012,
     "country": "British Virgin Islands",
     "url": "https://www.bitfinex.com",
