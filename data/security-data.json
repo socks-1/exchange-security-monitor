@@ -1,18 +1,18 @@
 {
-  "last_updated": "2026-06-14T13:29:09.199Z",
+  "last_updated": "2026-06-21T13:48:33.647Z",
   "summary": {
     "total_incidents": 0,
-    "exchanges_monitored": 4,
+    "exchanges_monitored": 3,
     "time_range_days": 7
   },
   "incidents": [],
   "trust_scores": [
     {
-      "timestamp": "2026-06-14T13:28:59.867Z",
+      "timestamp": "2026-06-21T13:48:27.144Z",
       "exchange": "Binance",
       "trust_score": 10,
       "trust_score_rank": 2,
-      "trade_volume_24h_btc": 68556.24977849831,
+      "trade_volume_24h_btc": 63844.866925233204,
       "year_established": 2017,
       "country": "Cayman Islands",
       "url": "https://www.binance.com/",
@@ -20,11 +20,11 @@
       "category": "trust_score"
     },
     {
-      "timestamp": "2026-06-14T13:29:02.633Z",
+      "timestamp": "2026-06-21T13:48:29.356Z",
       "exchange": "Kraken",
       "trust_score": 10,
       "trust_score_rank": 3,
-      "trade_volume_24h_btc": 5862.073071132661,
+      "trade_volume_24h_btc": 4578.385502432196,
       "year_established": 2011,
       "country": "United States",
       "url": "https://www.kraken.com/",
@@ -32,7 +32,7 @@
       "category": "trust_score"
     },
     {
-      "timestamp": "2026-06-14T13:29:04.830Z",
+      "timestamp": "2026-06-21T13:48:31.583Z",
       "exchange": "Bybit (Futures)",
       "trust_score": 0,
       "trust_score_rank": 460,
@@ -40,18 +40,6 @@
       "year_established": 2018,
       "country": "Seychelles",
       "url": "https://www.bybit.com",
-      "source": "coingecko",
-      "category": "trust_score"
-    },
-    {
-      "timestamp": "2026-06-14T13:29:07.168Z",
-      "exchange": "Bitfinex",
-      "trust_score": 7,
-      "trust_score_rank": 44,
-      "trade_volume_24h_btc": 5087.690730626131,
-      "year_established": 2012,
-      "country": "British Virgin Islands",
-      "url": "https://www.bitfinex.com",
       "source": "coingecko",
       "category": "trust_score"
     }
