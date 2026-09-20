@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-13T15:18:40.390Z",
+  "last_updated": "2026-09-20T15:06:32.605Z",
   "summary": {
     "total_incidents": 0,
     "exchanges_monitored": 3,
@@ -8,11 +8,11 @@
   "incidents": [],
   "trust_scores": [
     {
-      "timestamp": "2026-09-13T15:18:33.587Z",
+      "timestamp": "2026-09-20T15:06:25.615Z",
       "exchange": "Binance",
       "trust_score": 10,
-      "trust_score_rank": 2,
-      "trade_volume_24h_btc": 62348.98888481603,
+      "trust_score_rank": 1,
+      "trade_volume_24h_btc": 100133.09370687263,
       "year_established": 2017,
       "country": "Cayman Islands",
       "url": "https://www.binance.com/",
@@ -20,11 +20,11 @@
       "category": "trust_score"
     },
     {
-      "timestamp": "2026-09-13T15:18:35.997Z",
+      "timestamp": "2026-09-20T15:06:28.079Z",
       "exchange": "Kraken",
       "trust_score": 10,
       "trust_score_rank": 3,
-      "trade_volume_24h_btc": 6154.0265871447,
+      "trade_volume_24h_btc": 10831.284951308684,
       "year_established": 2011,
       "country": "United States",
       "url": "https://www.kraken.com/",
@@ -32,7 +32,7 @@
       "category": "trust_score"
     },
     {
-      "timestamp": "2026-09-13T15:18:38.358Z",
+      "timestamp": "2026-09-20T15:06:30.534Z",
       "exchange": "Bybit (Futures)",
       "trust_score": 0,
       "trust_score_rank": 460,
